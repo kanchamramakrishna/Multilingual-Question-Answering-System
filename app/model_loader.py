@@ -3,7 +3,10 @@ import gc
 from pathlib import Path
 import torch
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+<<<<<<< HEAD
 from huggingface_hub import try_to_load_from_cache
+=======
+>>>>>>> 0cdebc9e97207b8fce2d9ef34862d436bc6a45a4
 from peft import PeftModel
 
 class ModelLoader:
@@ -31,6 +34,7 @@ class ModelLoader:
             base_name = cfg.get("base_model_name_or_path") or base_name
         except Exception:
             pass
+<<<<<<< HEAD
         cached_config = try_to_load_from_cache(base_name, "config.json")
         cache_has_config = (
             isinstance(cached_config, str) and Path(cached_config).is_file()
@@ -46,6 +50,9 @@ class ModelLoader:
             base_name,
             local_files_only=cache_has_config and cached_weights,
         )
+=======
+        base = AutoModelForSeq2SeqLM.from_pretrained(base_name)
+>>>>>>> 0cdebc9e97207b8fce2d9ef34862d436bc6a45a4
         self.model = PeftModel.from_pretrained(base, str(path)).to(self.device)
         self.model.eval()
         print(f"Loaded base model {base_name} + LoRA adapter from {path} on {self.device}")

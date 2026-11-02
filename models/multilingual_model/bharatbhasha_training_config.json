@@ -1,0 +1,21 @@
+{
+  "base_model": "google/mt5-small",
+  "languages": [
+    "English",
+    "Hindi",
+    "Telugu"
+  ],
+  "method": "LoRA",
+  "epochs": 1.0,
+  "train_counts": {
+    "English": 4957,
+    "Hindi": 78034,
+    "Telugu": 78035
+  },
+  "validation_counts": {
+    "English": 131,
+    "Hindi": 79,
+    "Telugu": 60
+  },
+  "note": "Adapter weights; base model is also required at inference."
+}

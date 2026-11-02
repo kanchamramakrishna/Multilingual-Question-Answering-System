@@ -105,7 +105,11 @@ Open http://127.0.0.1:7860 in your browser. Paste a question and its context in 
 
 ## Model files and downloads
 
+<<<<<<< HEAD
 - Base pretrained weights (`google/mt5-small`) are loaded from the Hugging Face cache when available; otherwise they download on first run. They are not copied into the project directory by default.
+=======
+- Base pretrained weights (`google/mt5-small`) download automatically into the Hugging Face cache on first run. They are not copied into the project directory by default.
+>>>>>>> 0cdebc9e97207b8fce2d9ef34862d436bc6a45a4
 - Fine-tuned LoRA adapter and tokenizer are saved in `models/multilingual_model/`.
 - The adapter is not a complete standalone model: keep access to the base model cache, or download the base model again on another computer.
 - Do not expect model files to exist before training succeeds.
