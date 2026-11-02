@@ -1,0 +1,30 @@
+"""Launch the local Gradio application after fine-tuning."""
+from pathlib import Path
+import sys
+import gradio as gr
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+from app.model_loader import ModelLoader
+from app.inference import QAInference
+from app.interface import CUSTOM_CSS, create_interface
+
+def main():
+    loader = ModelLoader(model_path=ROOT / "models" / "multilingual_model")
+    model, tokenizer = loader.load()
+    inference = QAInference(model, tokenizer, loader.device)
+    demo = create_interface(inference)
+    demo.launch(
+        server_name="127.0.0.1",
+        server_port=7860,
+        share=False,
+        show_error=True,
+        theme=gr.themes.Soft(
+            primary_hue=gr.themes.colors.teal,
+            secondary_hue=gr.themes.colors.slate,
+            neutral_hue=gr.themes.colors.slate,
+        ),
+        css=CUSTOM_CSS,
+    )
+
+if __name__ == "__main__":
+    main()
